@@ -1,14 +1,15 @@
 import React,{useContext} from 'react';
 import {NavContext} from './NavState';
 
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 import { Logout } from './Logout';
+import { selectUser } from '../../features/userSlice';
+import { useSelector } from 'react-redux';
 
 
 export const NavBar = () =>{
 	const{ isMenuOpen} = useContext(NavContext);
-	const auth = localStorage.getItem('auth');
-	console.log(auth);
+	const user = useSelector(selectUser);
 	return(		
 		<nav className={`c-nav ${isMenuOpen &&  window.innerWidth<768 ? 'active' : ''}`}>	
 			<ul className="
@@ -24,16 +25,15 @@ export const NavBar = () =>{
 					<Link to="/" className="c-nav__link u-white">home</Link>
 				</li>
 				<li className="c-nav__item">
-					<Link to="/profile" className="c-nav__link u-white">profile</Link>
+					<Link to="/profile" className="c-nav__link u-white">
+						profile
+					</Link>
 				</li>
-				{auth ?
-					<li className="c-nav__item">
+				<li className="c-nav__item">
+					{user.loginedIn ?
 						<Logout/>
-					</li> :
-					<li className="c-nav__item">
-					<Link to="/login" className="btn btn--primary"><i className="fas fa-sign-in-alt"></i>log in</Link>
-					</li>
-				}
+					:<Link to="/login" className="btn btn--primary"><i className="fas fa-sign-in-alt"></i>log in</Link>}
+				</li>
 			</ul>
 		</nav>
 	)

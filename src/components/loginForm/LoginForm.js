@@ -1,4 +1,7 @@
 import React,{useState} from 'react';
+import { useDispatch } from 'react-redux';
+import { useHistory } from 'react-router';
+import {signIn} from '../../features/userSlice';
 
 function LoginForm (){
 	
@@ -18,11 +21,24 @@ function LoginForm (){
 		setPassword(e.target.value);
 	}
 
+	let redirect = useHistory();
+
+	const dispatch = useDispatch();
+
 	const handleSubmit = (event)=> {
     if (login===corLogin && password===corPassword){
 			setPasswordError(false);
 			setLoginError(false);
 			localStorage.setItem('auth', true);
+
+			dispatch(signIn({
+				userName: login,
+				password: password,
+				loginedIn: true,
+			}))
+
+			redirect.push('/profile');
+
 		} else if(login===corLogin && password!==corPassword){
 			setPasswordError(true);
 		} else if(login!==corLogin && password===corPassword){
@@ -32,6 +48,8 @@ function LoginForm (){
 			setLoginError(true);
 		}
     event.preventDefault();
+
+	
   }
 
 	return(
