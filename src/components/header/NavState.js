@@ -12,8 +12,6 @@ const NavState = ({ children }) => {
     toggleMenu(!isMenuOpen);
   }
 
-	
-
   return (
     <NavContext.Provider value={{ isMenuOpen, toggleMenuMode }}>{children}</NavContext.Provider>
   );

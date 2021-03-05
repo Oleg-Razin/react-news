@@ -1,7 +1,7 @@
 import React,{useContext} from 'react';
 import {NavContext} from './NavState';
 
-import { Link, Redirect } from 'react-router-dom';
+import { Link} from 'react-router-dom';
 import { Logout } from './Logout';
 import { selectUser } from '../../features/userSlice';
 import { useSelector } from 'react-redux';
