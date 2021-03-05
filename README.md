@@ -16,11 +16,12 @@ Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 Builds the app for production to the `build` folder.\
 It correctly bundles React in production mode and optimizes the build for the best performance.
 
-#This project takes info from NewsAPI and show news
+# This project takes info from NewsAPI and show news
 
-login: admin
-password: 12345
+login: `admin`
+password: `12345`
 
 You can change category or country
-But this API doesn't work on gh-pages only locally
+
+## But this API doesn't work on gh-pages only locally
 
